@@ -8,12 +8,12 @@ import {
     useDroppable,
 } from '@dnd-kit/core';
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { useStore } from '../store';
+// ...existing code...
 import { Issue, IssueStatus } from '../types';
 import { BoardColumn } from './BoardColumn';
 import styles from './DnDBoard.module.css';
 import { useNavigate } from 'react-router-dom';
-import { currentUser } from '../constants/currentUser';
+import { useStore } from '../store';
 
 type DnDBoardProps = {
     issues?: Issue[];
@@ -22,7 +22,7 @@ type DnDBoardProps = {
 const STATUSES: IssueStatus[] = ['Backlog', 'In Progress', 'Done'];
 
 export const DnDBoard: React.FC<DnDBoardProps> = ({ issues: propIssues }) => {
-    const { issues: storeIssues, moveIssue, setIssues } = useStore();
+    const { issues: storeIssues, moveIssue, setIssues, userRole } = useStore();
     const issues = propIssues || storeIssues;
     const sensors = useSensors(
         useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
@@ -97,7 +97,7 @@ export const DnDBoard: React.FC<DnDBoardProps> = ({ issues: propIssues }) => {
                             <BoardColumn
                                 status={status}
                                 issues={issuesByStatus[status]}
-                                onMove={currentUser.role === 'admin' ? moveIssue : () => {}}
+                                onMove={userRole === 'admin' ? moveIssue : () => {}}
                                 onClick={issue => navigate(`/issue/${issue.id}`)}
                                 sortable
                             />

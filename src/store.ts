@@ -9,6 +9,10 @@ interface StoreState {
   error: string | null;
   lastSync: string | null;
   recentlyAccessed: Issue[];
+  pollingInterval: number;
+  setPollingInterval: (interval: number) => void;
+  userRole: 'admin' | 'contributor';
+  setUserRole: (role: 'admin' | 'contributor') => void;
   fetchIssues: () => Promise<void>;
   moveIssue: (id: string, status: IssueStatus) => Promise<void>;
   updateIssue: (id: string, updates: Partial<Issue>) => Promise<void>;
@@ -23,6 +27,16 @@ export const useStore = create<StoreState>((set: any, get: any) => ({
   error: null,
   lastSync: null,
   recentlyAccessed: JSON.parse(localStorage.getItem('recentlyAccessed') || '[]'),
+  pollingInterval: Number(localStorage.getItem('pollingInterval')) || 10,
+  setPollingInterval: (interval: number) => {
+    localStorage.setItem('pollingInterval', String(interval));
+    set({ pollingInterval: interval });
+  },
+  userRole: (localStorage.getItem('userRole') as 'admin' | 'contributor') || 'admin',
+  setUserRole: (role: 'admin' | 'contributor') => {
+    localStorage.setItem('userRole', role);
+    set({ userRole: role });
+  },
   fetchIssues: async () => {
     set({ loading: true, error: null });
     try {

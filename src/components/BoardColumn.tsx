@@ -1,7 +1,7 @@
 import React from 'react';
 import { SortableIssue } from './SortableIssue';
 import { Issue, IssueStatus } from '../types';
-import { currentUser } from '../constants/currentUser';
+import { useStore } from '../store';
 import { useNavigate } from 'react-router-dom';
 
 interface Props {
@@ -19,33 +19,36 @@ const IssueCard: React.FC<{
     status: IssueStatus;
     onMove: (id: string, status: IssueStatus) => void;
     onClick?: () => void;
-}> = ({ issue, status, onMove, onClick }) => (
-    <div className="issue-card jira-card" onClick={onClick}>
-        <div className="title">{issue.title}</div>
-        <div className="meta">
-            Assignee: {issue.assignee} | Severity: {issue.severity}
-        </div>
-        <div className="tags">Tags: {issue.tags.join(', ')}</div>
-        {currentUser.role === 'admin' && (
-            <div className="card-actions">
-                {statusList
-                    .filter(s => s !== status)
-                    .map(s => (
-                        <button
-                            key={s}
-                            className="move-btn"
-                            onClick={e => {
-                                e.stopPropagation();
-                                onMove(issue.id, s);
-                            }}
-                        >
-                            {s}
-                        </button>
-                    ))}
+}> = ({ issue, status, onMove, onClick }) => {
+    const userRole = useStore(s => s.userRole);
+    return (
+        <div className="issue-card jira-card" onClick={onClick}>
+            <div className="title">{issue.title}</div>
+            <div className="meta">
+                Assignee: {issue.assignee} | Severity: {issue.severity}
             </div>
-        )}
-    </div>
-);
+            <div className="tags">Tags: {issue.tags.join(', ')}</div>
+            {userRole === 'admin' && (
+                <div className="card-actions">
+                    {statusList
+                        .filter(s => s !== status)
+                        .map(s => (
+                            <button
+                                key={s}
+                                className="move-btn"
+                                onClick={e => {
+                                    e.stopPropagation();
+                                    onMove(issue.id, s);
+                                }}
+                            >
+                                {s}
+                            </button>
+                        ))}
+                </div>
+            )}
+        </div>
+    );
+};
 
 export const BoardColumn: React.FC<Props> = ({
     status,

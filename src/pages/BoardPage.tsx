@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState, useCallback } from 'react';
-import { useStore } from '../store';
 import { BoardColumn } from '../components/BoardColumn';
 import { DnDBoard } from '../components/DnDBoard';
 import { RecentlyAccessedSidebar } from '../components/RecentlyAccessedSidebar';
 import { Issue, IssueStatus } from '../types';
-import { currentUser } from '../constants/currentUser';
+import { useStore } from '../store';
 import dayjs from 'dayjs';
 
 const getPriorityScore = (issue: Issue) => {
@@ -30,12 +29,15 @@ export const BoardPage = () => {
     const [undo, setUndo] = useState<{ issue: Issue; prevStatus: IssueStatus } | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    const pollingInterval = useStore(s => s.pollingInterval);
+    const userRole = useStore(s => s.userRole);
+
     useEffect(() => { fetchIssues(); }, [fetchIssues]);
 
     useEffect(() => {
-        const interval = setInterval(fetchIssues, 10000);
+        const interval = setInterval(fetchIssues, pollingInterval * 1000);
         return () => clearInterval(interval);
-    }, [fetchIssues]);
+    }, [fetchIssues, pollingInterval]);
 
     const handleUndo = useCallback(() => {
         if (undo) {
@@ -96,7 +98,7 @@ export const BoardPage = () => {
                 </div>
                 {error && <div className="error-message">{error}</div>}
                 {loading && <div className="loading-message">Loading...</div>}
-                {currentUser.role === 'admin' ? (
+                {userRole === 'admin' ? (
                     <DnDBoard issues={filtered} />
                 ) : (
                     <div className="board-columns">
