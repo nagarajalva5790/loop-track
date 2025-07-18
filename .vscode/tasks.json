@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Install Zustand for state management",
+			"command": "npm install zustand",
+			"group": "build",
+			"isBackground": false
+		}
+	]
+}
