@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState, useCallback } from 'react';
-import { BoardColumn } from '../components/BoardColumn';
-import { DnDBoard } from '../components/DnDBoard';
-import { RecentlyAccessedSidebar } from '../components/RecentlyAccessedSidebar';
-import { Issue, IssueStatus } from '../types';
-import { useStore } from '../store';
+import { BoardColumn } from '../../components/BoardColumn';
+import { DnDBoard } from '../../components/DnDBoard/DnDBoard';
+import { RecentlyAccessedSidebar } from '../../components/RecentlyAccessedSidebar/RecentlyAccessedSidebar';
+import { Issue, IssueStatus } from '../../types';
+import { useStore } from '../../store';
 import dayjs from 'dayjs';
 
 const getPriorityScore = (issue: Issue) => {

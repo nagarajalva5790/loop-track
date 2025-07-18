@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useStore } from '../store';
-import { currentUser } from '../constants/currentUser';
+import { useStore } from '../../store';
+
 
 export const IssueDetailPage = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const { issues, updateIssue, addRecentlyAccessed } = useStore();
+    const userRole = useStore(s => s.userRole);
 
     const issue = useMemo(() => issues.find(i => i.id === id), [issues, id]);
 
@@ -41,7 +42,7 @@ export const IssueDetailPage = () => {
             <div className="meta">Assignee: {assignee}</div>
             <div className="meta">Created: {new Date(createdAt).toLocaleString()}</div>
             <div className="tags">Tags: {tags.join(', ')}</div>
-            {currentUser.role === 'admin' && status !== 'Done' && (
+            {userRole === 'admin' && status !== 'Done' && (
                 <button className="resolve-btn" onClick={handleResolve}>
                     Mark as Resolved
                 </button>

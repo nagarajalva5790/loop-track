@@ -8,12 +8,11 @@ import {
     useDroppable,
 } from '@dnd-kit/core';
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-// ...existing code...
-import { Issue, IssueStatus } from '../types';
-import { BoardColumn } from './BoardColumn';
+import { Issue, IssueStatus } from '../../types';
+import { BoardColumn } from '../BoardColumn';
 import styles from './DnDBoard.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useStore } from '../store';
+import { useStore } from '../../store';
 
 type DnDBoardProps = {
     issues?: Issue[];

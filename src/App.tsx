@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { BoardPage } from './pages/BoardPage';
-import { IssueDetailPage } from './pages/IssueDetailPage';
-import { SettingsPage } from './pages/SettingsPage';
+import { BoardPage } from './pages/BoardPage/BoardPage';
+import { IssueDetailPage } from './pages/IssueDetailPage/IssueDetailPage';
+import { SettingsPage } from './pages/SettingsPage/SettingsPage';
 
 
-import { Navigation } from './components/Navigation';
+import { Navigation } from './layouts/Navigation';
 
 export const App = () => {
   return (

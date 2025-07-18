@@ -1,5 +1,5 @@
 import React from 'react';
-import { SortableIssue } from './SortableIssue';
+import { SortableIssue } from './SortableIssue/SortableIssue';
 import { Issue, IssueStatus } from '../types';
 import { useStore } from '../store';
 import { useNavigate } from 'react-router-dom';

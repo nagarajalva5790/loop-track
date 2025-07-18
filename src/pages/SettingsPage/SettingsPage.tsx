@@ -1,7 +1,7 @@
 
 
 import styles from './SettingsPage.module.css';
-import { useStore } from '../store';
+import { useStore } from '../../store';
 
 export const SettingsPage = () => {
     const pollingInterval = useStore(s => s.pollingInterval);
