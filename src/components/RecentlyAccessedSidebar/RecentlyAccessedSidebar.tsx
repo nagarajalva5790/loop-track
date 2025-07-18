@@ -39,12 +39,7 @@ export const RecentlyAccessedSidebar = ({ expanded, onClose }: { expanded: boole
   if (!expanded) return null;
 
   return (
-    <aside className={styles.sidebar}>
-      <button
-        className={styles['sidebar-toggle-btn']}
-        aria-label="Hide Recently Accessed"
-        onClick={onClose}
-      >⟨</button>
+    <aside className='sidebar'>
       <h4>Recently Accessed</h4>
       <div className={styles['recent-issue-list']}>
         {recent.length === 0 && (

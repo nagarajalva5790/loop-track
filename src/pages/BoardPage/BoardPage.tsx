@@ -125,14 +125,14 @@ export const BoardPage = () => {
                 onClick={() => setSidebarOpen(o => !o)}
                 style={{
                     position: 'fixed',
-                    right: sidebarOpen ? 270 : 0,
+                    right: sidebarOpen ? 300 : 0,
                     top: 80,
                     zIndex: 1010,
                     transform: sidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
                     transition: 'right 0.3s, transform 0.3s',
                 }}
             >
-                {sidebarOpen ? '⟨' : '⟩'}
+                {sidebarOpen ? '⟩' : '⟨'}
             </button>
             <RecentlyAccessedSidebar expanded={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         </div>

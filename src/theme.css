@@ -1,0 +1,37 @@
+/* src/theme.css: Global theme variables for LoopTrack */
+:root {
+  --color-bg: #f8fafc;
+  --color-text: #222;
+  --color-primary: #fe7743;
+  --color-primary-bright: #273f4f;
+  --color-primary-dark: #447d9b;
+  --color-secondary: #0747a6;
+  --color-accent: #f59e42;
+  --color-border: #e5e7eb;
+  --color-card-bg: #fff;
+  --color-card-hover: #f4f5f7;
+  --color-card-shadow: 0 1px 4px rgba(7, 71, 166, 0.07);
+  --color-nav-bg: #fe7743;
+  --color-nav-link: #fff;
+  --color-nav-link-hover: #447d9b;
+  --color-error: #ef4444;
+  --color-success: #22c55e;
+  --color-info: #6b778c;
+  --color-dark-bg: #1a1a1a;
+  --color-dark-card: #23272f;
+  --color-dark-border: #2c2f36;
+  --color-dark-nav: #222a35;
+  --color-dark-link: #e4e6eb;
+  --font-main: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+}
+
+body.dark-mode {
+  --color-bg: #1a1a1a;
+  --color-text: #e4e6eb;
+  --color-card-bg: #23272f;
+  --color-card-hover: #2c2f36;
+  --color-border: #2c2f36;
+  --color-nav-bg: #222a35;
+  --color-nav-link: #e4e6eb;
+  --color-nav-link-hover: #447d9b;
+}

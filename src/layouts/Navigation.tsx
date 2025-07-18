@@ -15,7 +15,7 @@ export const Navigation = () => {
       <nav className="jira-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 32px', height: 64 }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <img src={process.env.PUBLIC_URL + '/loopTrack-logo.svg'} alt="LoopTrack Logo" style={{ width: 36, height: 36, marginRight: 8 }} />
-          <span style={{ fontWeight: 700, fontSize: 22, color: '#273F4F', letterSpacing: 1, fontFamily: 'inherit' }}>LoopTrack</span>
+          <span className="logo">LoopTrack</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 32, flex: 1, justifyContent: 'center' }}>
           <Link className="jira-nav-link" to="/board" style={{ fontSize: 18 }}>Board</Link>
