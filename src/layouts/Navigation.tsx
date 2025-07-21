@@ -15,7 +15,7 @@ export const Navigation = () => {
       <nav className="jira-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 32px', height: 64 }}>
         <div
           style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
-          onClick={() => window.location.pathname = '/'}
+          onClick={() => window.location.pathname = '/look-track'}
         >
           <img src={process.env.PUBLIC_URL + '/loopTrack-logo.svg'} alt="LoopTrack Logo" style={{ width: 36, height: 36, marginRight: 8 }} />
           <span className="logo">LoopTrack</span>
